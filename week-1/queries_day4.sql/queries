@@ -1,0 +1,56 @@
+CREATE TABLE Sale_Practice (
+    Region VARCHAR(50),
+    Amount INT,
+    Category VARCHAR(50),
+    Quantity INT
+);
+
+INSERT INTO Sale_Practice
+(Region, Amount, Category, Quantity)
+VALUES
+('North', 1000, 'Electronics', 2),
+('North', 2000, 'Furniture', 3),
+('North', 3000, 'Clothing', 4),
+('South', 1500, 'Electronics', 2),
+('South', 2500, 'Furniture', 5),
+('South', 3500, 'Clothing', 6),
+('East', 1200, 'Electronics', 3),
+('East', 2200, 'Furniture', 4),
+('East', 4200, 'Clothing', 7),
+('West', 1800, 'Electronics', 2),
+('West', 2800, 'Furniture', 5),
+('West', 3800, 'Clothing', 8);
+
+SELECT * FROM Sale_Practice;
+
+SELECT* FROM Sale_Practice
+WHERE Amount>
+(SELECT AVG(Amount) FROM Sale_Practice)
+
+SELECT*FROM Sale_Practice S1
+WHERE Amount=(
+        SELECT MAX(AMOUNT)
+        FROM Sale_Practice S2
+        WHERE S2.Region=S1.Region);
+
+
+WITH AverageSales AS
+(
+SELECT AVG(Amount) AS AvgAmount
+FROM Sale_Practice)
+SELECT* FROM Sale_Practice
+WHERE Amount>(
+SELECT AvgAmount FROM AverageSales);
+
+WITH RegionSales AS
+(
+SELECT Region,AVG(Amount) AVG_SALES
+FROM Sale_Practice
+GROUP BY Region
+)
+,OverallSales AS 
+(SELECT AVG(Amount) OverAllAvg
+FROM Sale_Practice)
+SELECT R.Region,R.AVG_SALES,O.OverAllAvg
+FROM RegionSales R CROSS JOIN OverallSales O
+WHERE R.AVG_SALES>O.OverAllAvg
