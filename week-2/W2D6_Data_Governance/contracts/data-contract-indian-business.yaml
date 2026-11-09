@@ -1,0 +1,64 @@
+contract:
+  name: Indian Business Dataset
+  version: 1.0
+
+  producer:
+    name: Data Analyst
+    responsibility: Provide clean and accurate business data
+
+  consumer:
+    name: BI Dashboard Team
+    responsibility: Use data for reporting and analysis
+
+  dataset:
+    name: indian_business_dataset
+    format: CSV
+
+  columns:
+    business_id:
+      type: string
+      required: true
+      unique: true
+
+    business_name:
+      type: string
+      required: true
+
+    owner_name:
+      type: string
+      required: true
+      classification: PII
+
+    state:
+      type: string
+      required: true
+
+    city:
+      type: string
+      required: true
+
+    age:
+      type: integer
+      required: true
+      min: 18
+      max: 100
+
+    email:
+      type: string
+      required: true
+      classification: PII
+
+    phone:
+      type: string
+      required: true
+      classification: PII
+
+    annual_revenue:
+      type: number
+      required: true
+      min: 0
+
+    gstin:
+      type: string
+      required: true
+      classification: Sensitive Business Identifier
