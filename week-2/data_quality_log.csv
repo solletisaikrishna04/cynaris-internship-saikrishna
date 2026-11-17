@@ -1,0 +1,5 @@
+Task,Problem Found,Action Taken,Status
+Missing Values,No missing values found,No imputation required,Completed
+Text Cleaning,Extra spaces may exist,Removed leading and trailing spaces,Completed
+String Standardisation,Inconsistent text casing,Converted text to lowercase,Completed
+Outlier Detection,Outliers checked using sample data,Practised IQR method; original data not modified,Practice Completed
