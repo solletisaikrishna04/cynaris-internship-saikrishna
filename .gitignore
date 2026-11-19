@@ -4,3 +4,7 @@ __pycache__/
 *.py[cod]
 .ipynb_checkpoints/
 .env
+
+# Local business datasets
+week-2/W2D6_Data_Governance/indian_business_cleaned.csv
+week-4/indian_business_cleaned.csv
