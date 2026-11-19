@@ -1,0 +1,62 @@
+CREATE TABLE Sale (
+    SaleID INT,
+    Region VARCHAR(20),
+    Category VARCHAR(20),
+    SaleDate DATE,
+    Amount DECIMAL(10,2),
+    Quantity INT
+);
+
+INSERT INTO Sale VALUES
+(1, 'North', 'Electronics', '2024-01-05', 1200, 2),
+(2, 'South', 'Furniture',   '2024-01-08', 800, 1),
+(3, 'East',  'Electronics', '2024-01-10', 1500, 3),
+(4, 'West',  'Clothing',    '2024-01-12', 500, 5),
+(5, 'North', 'Furniture',   '2024-02-01', 2000, 2),
+(6, 'South', 'Electronics', '2024-02-04', 1800, 4),
+(7, 'East',  'Clothing',    '2024-02-08', 700, 7),
+(8, 'West',  'Furniture',   '2024-02-10', 1300, 2),
+(9, 'North', 'Electronics', '2024-03-02', 2200, 3),
+(10,'South', 'Clothing',    '2024-03-05', 650, 6),
+(11,'East',  'Furniture',   '2024-03-09', 1700, 2),
+(12,'West',  'Electronics', '2024-03-15', 2100, 5),
+(13,'North', 'Clothing',    '2024-04-01', 900, 8),
+(14,'South', 'Furniture',   '2024-04-04', 1450, 2),
+(15,'East',  'Electronics', '2024-04-08', 2500, 4);
+
+SELECT*FROM Sale
+
+
+SELECT COUNT(*) AS TOTAL_NO_OF_SALES FROM Sale
+
+SELECT Region,COUNT(*) from sale
+GROUP BY Region
+
+SELECT SUM(Amount) AS TOTAL_REVENUE FROM Sale
+
+SELECT Category,SUM(Amount) AS TOTAL_REVENUE FROM Sale
+GROUP BY Category
+
+SELECT Region,AVG(Amount) AS AVG_SALE FROM Sale
+GROUP BY Region
+
+SELECT Category,AVG(Quantity) AS AVG_QUANTITY FROM Sale
+GROUP BY Category
+
+SELECT MAX(Amount) AS HighestSale FROM Sale
+
+
+SELECT MIN(Amount) AS LowsetSale FROM Sale
+
+SELECT Region,Category,MONTH(SaleDate) AS MONTH FROM Sale
+GROUP BY Region,Category,MONTH(SaleDate)
+
+SELECT Region,COUNT(*) AS TotalSales FROM Sale
+GROUP BY Region
+HAVING COUNT(*) >2
+
+SELECT
+    SaleID,
+    Amount,
+    SUM(Amount) OVER() AS TotalRevenue
+FROM Sale;
